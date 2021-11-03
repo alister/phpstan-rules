@@ -50,6 +50,12 @@
       "Alister\\PHPStan\\Rules\\Tests\\Fixtures\\": "tests/fixtures"
     }
   },
+  "scripts": {
+    "tests": [
+      "Composer\\Config::disableProcessTimeout",
+      "phpunit"
+    ]
+  },
   "support": {
     "issues": "https://github.com/alister/phpstan-rules/issues",
     "source": "https://github.com/alister/phpstan-rules"

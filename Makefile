@@ -43,7 +43,7 @@ static-code-analysis-baseline: vendor ## Generates a baseline for static code an
 .PHONY: tests
 tests: vendor ## Runs tests with phpunit/phpunit
 	mkdir -p .build/phpunit
-	vendor/bin/phpunit --configuration=tests/phpunit.xml
+	composer tests
 
 vendor: composer.json composer.lock
 	composer validate --strict
