@@ -1,0 +1,21 @@
+parameters:
+	logger_context:
+		disallowed_namespaces:
+		    - App\Entity
+
+parametersSchema:
+	logger_context: structure([
+		disallowed_namespaces: listOf(string())
+	])
+
+rules:
+	- Alister\PHPStan\LogstashLogger\LogstashLoggerContextKeysRule
+	- Alister\PHPStan\LogstashLogger\LoggerContextObjectValuesRule
+
+services:
+	-
+		class: \Alister\PHPStan\Rules\LoggerContext\ObjectAsValuesRule
+		arguments:
+			bannedNamespaces: '%logger_context.disallowed_namespaces%'
+		tags:
+			- phpstan.rules.rule

@@ -1,0 +1,9 @@
+parameters:
+  level: 1
+  paths:
+    #- tests/Samples/api/src/
+    #- tests/Samples/api/src/WiQ/OrderBundle/
+    - tests/Samples/SampleFail.php
+
+includes:
+  - ./rules.neon
