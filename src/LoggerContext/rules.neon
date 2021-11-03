@@ -9,8 +9,8 @@ parametersSchema:
 	])
 
 rules:
-	- Alister\PHPStan\LogstashLogger\LogstashLoggerContextKeysRule
-	- Alister\PHPStan\LogstashLogger\LoggerContextObjectValuesRule
+	- Alister\PHPStan\Rules\LoggerContext\KeyDotsRule
+	- Alister\PHPStan\Rules\LoggerContext\ObjectAsValuesRule
 
 services:
 	-

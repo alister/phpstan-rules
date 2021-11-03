@@ -22,8 +22,6 @@ use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use Psr\Log\LoggerInterface;
 
-use function sprintf;
-
 /**
  * Search a logger context for disallowed class instances from listed namespaces (eg: entities).
  *
@@ -37,9 +35,7 @@ final class ObjectAsValuesRule implements Rule
     private $bannedNamespaces;
 
     /**
-     * @-param array<array<string, string|string[]>> $bannedNamespaces
-     *
-     * @param array<int, string> $bannedNamespaces
+     * @param array<array-key, string> $bannedNamespaces
      */
     public function __construct(array $bannedNamespaces = [])
     {
@@ -53,11 +49,12 @@ final class ObjectAsValuesRule implements Rule
 
     public function processNode(Node $node, Scope $scope): array
     {
-        if (! $node instanceof Array_) {
+        if (!$node instanceof Array_) {
             throw new \LogicException('Expected an Array_ type');
         }
 
         $loggerContext = $this->getLoggerContext($node, $scope);
+
         if (null === $loggerContext) {
             return [];
         }
@@ -66,7 +63,7 @@ final class ObjectAsValuesRule implements Rule
         $messages = [];
 
         foreach ($disallowedValues as $key => $class) {
-            $messages[] = sprintf(
+            $messages[] = \sprintf(
                 "Logging the object(%s) value from key '%s' is not allowed",
                 $class,
                 $key
@@ -79,6 +76,7 @@ final class ObjectAsValuesRule implements Rule
     private function getLoggerContext(Array_ $node, Scope $scope): ?Arg
     {
         $possibleLoggerContext = $node->getAttribute('parent');
+
         if (!$possibleLoggerContext instanceof Arg) {
             return null;
         }
@@ -88,6 +86,7 @@ final class ObjectAsValuesRule implements Rule
         }
 
         $possibleLogger = $possibleLoggerContext->getAttribute('parent');
+
         if (!$possibleLogger instanceof Node\Expr\MethodCall) {
             return null;
         }
@@ -117,8 +116,9 @@ final class ObjectAsValuesRule implements Rule
             if ($valueType instanceof StringType) {
                 continue;
             }
+
             if (!$valueType instanceof \PHPStan\Type\TypeWithClassName) {
-                throw new \UnexpectedValueException('Expected a type that is_a(TypeWithClassName), got '.get_class($valueType));
+                throw new \UnexpectedValueException('Expected a type that is_a(TypeWithClassName), got ' . \get_class($valueType));
             }
 
             $className = $valueType->getClassName();

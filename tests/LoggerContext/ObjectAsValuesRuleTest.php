@@ -16,8 +16,8 @@ namespace Alister\PHPStan\Rules\Tests\LoggerContext;
 use Alister\PHPStan\Rules\LoggerContext\ObjectAsValuesRule;
 use Alister\PHPStan\Rules\Tests\AbstractTestCase;
 use Alister\PHPStan\Rules\Tests\Fixtures;
-use PHPStan\Rules\Rule;
 use Alister\PHPStan\Rules\Tests\Fixtures\Support\Entity\User;
+use PHPStan\Rules\Rule;
 
 /**
  * @internal
@@ -33,8 +33,8 @@ final class ObjectAsValuesRuleTest extends AbstractTestCase
         $paths = [
             'good-simple-class-with-good-keys' => $loggerContext . '/Success/GoodKeysSimpleScalarValues.php',
             'good-keys-passed-logger' => $loggerContext . '/Success/GoodKeysPassedLogger.php',
-            'good-entity-returns-string' => $loggerContext .'/Success/GoodEntityMethodReturnsString.php',
-            'good-sub-entity-returns-string' => $loggerContext .'/Success/GoodOtherEntityReturnsString.php',
+            'good-entity-returns-string' => $loggerContext . '/Success/GoodEntityMethodReturnsString.php',
+            'good-sub-entity-returns-string' => $loggerContext . '/Success/GoodOtherEntityReturnsString.php',
             // #'script-with-anonymous-class' => $loggerContext .'Classes/FinalRule/Success/anonymous-class.php',
             // #'trait' => $loggerContext .'Classes/FinalRule/Success/ExampleTrait.php',
             // #'trait-with-anonymous-class' => $loggerContext .'Classes/FinalRule/Success/TraitWithAnonymousClass.php',
@@ -63,7 +63,7 @@ final class ObjectAsValuesRuleTest extends AbstractTestCase
                 ],
             ],
             'fail-logs-entire-sub-entity' => [
-                $loggerContext .'FailReturnsOtherEntity.php',
+                $loggerContext . 'FailReturnsOtherEntity.php',
                 [
                     \sprintf(
                         "Logging the object(%s) value from key 'illegal_entity_return' is not allowed",

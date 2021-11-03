@@ -1,0 +1,83 @@
+parameters:
+  level: max
+  paths:
+    - src
+    - tests
+    #- logger-rules/src/
+  # from phpstan v0.12.88 - https://phpstan.org/user-guide/output-format#opening-file-in-an-editor
+  # editorUrl: 'phpstorm://open?file=%%file%%:%%line%%'
+  # editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+  # editorUrl: '%%file%%:%%line%%' # with 'Awesome Console'?
+
+  # for level 9 & phpstan v1.0
+  checkExplicitMixed: true
+
+  #bootstrapFiles:
+  #  - ./bin/.phpunit/phpunit/vendor/autoload.php
+
+  excludePaths:
+    analyseAndScan:
+      - config/bundles.php
+      - config/preload.php
+      - src/Kernel.php
+      - tests/bootstrap.php
+
+  checkMissingIterableValueType: false
+  checkGenericClassInNonGenericObjectType: false
+
+  #ignoreErrors:
+
+includes:
+  # generate with `make phpstan-generate-baseline`
+  #- phpstan-baseline.neon
+
+  #- phar://vendor/bin/phpstan.phar/conf/bleedingEdge.neon
+
+  #  https://github.com/phpstan/phpstan-deprecation-rules
+  # - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+  # https://github.com/phpstan/phpstan-phpunit
+  #- vendor/phpstan/phpstan-phpunit/extension.neon
+  #- vendor/phpstan/phpstan-phpunit/rules.neon
+  # https://github.com/phpstan/phpstan-strict-rules
+  #- vendor/phpstan/phpstan-strict-rules/rules.neon
+
+  # https://github.com/ekino/phpstan-banned-code - parameters.banned_code
+  #- vendor/ekino/phpstan-banned-code/extension.neon
+  # https://github.com/ergebnis/phpstan-rules
+  #- vendor/ergebnis/phpstan-rules/rules.neon
+  # https://github.com/Slamdunk/phpstan-extensions
+  #- vendor/slam/phpstan-extensions/conf/slam-rules.neon
+  #- vendor/slam/phpstan-extensions/conf/symfony-rules.neon
+  #- vendor/slam/phpstan-extensions/conf/not-now-rules.neon
+
+  # https://github.com/thecodingmachine/phpstan-strict-rules
+  #- vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
+
+  #- vendor/rector/rector-phpstan-rules/config/config.neon
+
+  # https://github.com/symplify/phpstan-rules
+  #- vendor/symplify/phpstan-rules/packages/symfony/config/services.neon
+  #- vendor/symplify/phpstan-rules/config/services/services.neon
+  #- vendor/symplify/phpstan-rules/config/forbidden-static-rules.neon
+  #- vendor/symplify/phpstan-rules/config/naming-rules.neon
+  #- vendor/symplify/phpstan-rules/config/regex-rules.neon
+  #- vendor/symplify/phpstan-rules/config/size-rules.neon
+  #- vendor/symplify/phpstan-rules/config/static-rules.neon
+  #- vendor/symplify/phpstan-rules/config/string-to-constant-rules.neon
+  #- vendor/symplify/phpstan-rules/config/test-rules.neon
+  #- vendor/symplify/phpstan-rules/config/array-rules.neon
+  #- vendor/symplify/phpstan-rules/config/code-complexity-rules.neon
+  #- vendor/symplify/phpstan-rules/config/doctrine-rules.neon
+  #- vendor/symplify/phpstan-rules/config/services-rules.neon
+  #- vendor/symplify/phpstan-rules/config/symfony-rules.neon
+  # KnpLabs/DoctrineBehaviors: Only required for Translatable
+  ## https://github.com/KnpLabs/DoctrineBehaviors#phpstan
+  ##- vendor/knplabs/doctrine-behaviors/phpstan-extension.neon
+
+services:
+    #-
+    #    class: Symplify\PHPStanRules\Rules\PreventDuplicateClassMethodRule
+    #    tags: [phpstan.rules.rule]
+    #-
+    #    class: Symplify\PHPStanRules\Rules\NoDependencyJugglingRule
+    #    tags: [phpstan.rules.rule]

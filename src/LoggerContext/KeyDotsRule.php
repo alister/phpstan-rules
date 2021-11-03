@@ -112,6 +112,7 @@ final class KeyDotsRule implements Rule
             }
 
             $keyName = $keyType->getValue();
+
             if (str_contains($keyName, '.')) {
                 $dottedKeys[$keyName] = $keyType;
             }
